@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Blogy - Home</title>
+</head>
+<body>
+    <%- include('partials/navebar') -%>
+    <div class="title"><h1>All Blogs</h1></div>
+    <div class="card-flex">
+      <% data.reverse() %>
+  <% data.forEach((e,i)=>{ %>
+    <div class="card local-css-card" style="width: 18rem;">
+        <img src="/uploads/<%=e.img%>" class="card-img-top rounded" alt="<%= e.link%>">
+        <div class="card-body">
+          <p class="card-title"><%=e.date.toLocaleDateString()%></p>
+          <h5 class="card-text link"><%= e.title%></h5>
+          <a href="/<%= e.link%>" class="btn btn-primary">Read More</a>
+        </div>
+      </div>
+    <% })%>
+    </div>
+
+    <%let j=0;  data.forEach((e,i)=>{ %>
+      <% if(i%3==0){ %>
+    <a href="/page/<%=i%>"> <%= j+=1; %>  </a>
+    <%}%>
+    <% })%>
+
+
+    <script src="/js/js.js"></script>
+    <script>
+      console.log('hello');
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+.title h1{
+    font-size: 2rem;
+    text-align: center;
+    font-variant: petite-caps;
+}
+
+/* styling of card  */
+.local-css-card{
+    margin: 0px 1rem;
+}
+
+/* styling create new blogs form  */
+.form-class{
+    width: 50%;
+    margin: auto;
+}
+
+/* styling card display flex  */
+.card-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.container{
+    height: 20rem;
+    overflow: auto;
+}
+.admin-css{
+    margin: 10px 0px;
+    padding: 0px 5px;
+}
+#search{
+    height: 27px;
+    margin-top: 10px;
+}
