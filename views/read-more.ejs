@@ -11,7 +11,7 @@
 <body>
     <%- include('partials/navebar') -%>
 
-    <img src="/uploads/<%= data.img%>" style="display:block;margin:auto;" alt="">
+    <img src="<%= data.img%>" style="display:block;margin:auto;" alt="">
     <p style="text-align: center;"><%= data.date.toLocaleDateString()%></p>
     <h1 style="text-align: center;"><%=data.title %></h1>
     <p style="text-align: center;"><%= data.content%></p>

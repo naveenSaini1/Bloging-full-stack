@@ -6,6 +6,12 @@ const router=express.Router();
 const Login=require('../db/models/login')
 const expressSession=require('express-session');
 const passport=require("passport")
+const cloudnary=require('cloudinary').v2;
+cloudnary.config({ 
+    cloud_name: process.env.CLOUDNAME, 
+    api_key: process.env.APIKEY, 
+    api_secret: process.env.APISECRET,
+  });
 const {initializingPassport ,isAuth}=require('../passportconfig');
 initializingPassport(passport);
 
@@ -18,30 +24,27 @@ router.get('/new',isAuth,async(req,res)=>{
 })
 
 router.post('/new',isAuth,async(req,res)=>{
+
     const user= await Blog.findOne({title:req.body.title});
     if(user) return res.send('blog already exists')
     if(!user){
-        const options={
-            url: req.body.img,
-            dest: path.join(__dirname,'../public/uploads') 
-        }
-        download.image(options)
-        .then(({ filename }) => {
-          const newuser=new Blog({
-            img:path.basename(filename),
-            title:req.body.title,
-            content:req.body.content,
-        });
-        newuser.save()
-        .then((data)=>{
-            res.redirect('/')
+        const file=req.files.img;
+        cloudnary.uploader.upload(file.tempFilePath,(err,result)=>{
+            const newuser=new Blog({
+                img:result.url,
+                title:req.body.title,
+                content:req.body.content,
+            });
+            newuser.save()
+            .then((data)=>{
+                res.redirect('/')
+            })
+            .catch((e)=>{
+                res.send(e);
+            })
         })
-        .catch((e)=>{
-            res.send(e);
-        })
-        })
-        .catch((err) => console.error(err))
-        
+
+
     }
 
 })

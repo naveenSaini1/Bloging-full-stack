@@ -15,7 +15,7 @@
       <!-- <% data.reverse() %> -->
   <% data.forEach((e,i)=>{ %>
     <div class="card local-css-card" style="width: 18rem;">
-        <img src="/uploads/<%=e.img%>" class="card-img-top rounded" alt="<%= e.link%>">
+        <img src="<%=e.img%>" class="card-img-top rounded" alt="<%= e.link%>">
         <div class="card-body">
           <p class="card-title"><%=e.date.toLocaleDateString()%></p>
           <h5 class="card-text link"><%= e.title%></h5>

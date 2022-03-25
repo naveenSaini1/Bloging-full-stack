@@ -10,7 +10,11 @@ const expressSession=require('express-session');
 const passport=require("passport")
 const {initializingPassport ,isAuth}=require('../passportconfig');
 const Blog=require('../db/models/articals')
+const fileUpload=require('express-fileupload');
 const app=express();
+app.use(fileUpload({
+    useTempFiles:true,
+}))
 app.use(express.urlencoded({extended:false}));
 app.use(express.json())
 const port=process.env.PORT || 3000;
